@@ -5,11 +5,237 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Security App</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    .scrollable-div {
+      max-height: 400px;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .policy-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .header, .footer {
+      background-color: black;
+      color: white;
+      padding: 15px 0;
+      text-align: center;
+    }
+
+    .security-score-btn {
+      background-color: black;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+    }
+
+    .security-score-btn:hover {
+      background-color: #333;
+    }
+
+    .suggestions-box {
+      background-color: #f9f9f9;
+      border: 1px solid #ccc;
+      padding: 15px;
+      border-radius: 5px;
+      margin-top: 20px;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    .navbar-dark .navbar-nav .nav-link {
+      color: white;
+    }
+
+    .navbar-dark .navbar-nav .nav-link:hover {
+      color: #ddd;
+    }
+
+    .security-score {
+      font-weight: bold;
+      margin-left: 15px;
+    }
+  </style>
 </head>
 
 <body>
-  <h1>Welcome to the Predicting Cloud Access Control Security Score</h1>
-  <p>This is a simple app deployed on AWS Elastic Beanstalk.</p>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Security Score Predictor</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="fas fa-home"></i> Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="fas fa-sign-in-alt"></i> Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <div class="header">
+    <p>Access control evaluation in a networking cloud architecture is influenced by a variety of factors that determine how securely and effectively resources are accessed and managed.</p>
+  </div>
+
+  <div class="container mt-4">
+    <!-- Scrollable Policies List -->
+    <div class="scrollable-div">
+      <div id="policy-list">
+        <!-- Policies will be rendered here -->
+      </div>
+    </div>
+
+    <!-- Get Security Score Button -->
+    <div class="text-center mt-3">
+      <button class="security-score-btn" id="get-score-btn">Get Security Score</button>
+      <span id="security-score-display" class="security-score"></span>
+    </div>
+
+    <!-- Suggestions Display Box -->
+    <div class="suggestions-box" id="suggestions-box">
+      <h5>Suggestions for Improving Security</h5>
+      <p>By implementing, enabling, or enhancing the features listed below for the given access control data, a higher security score can be achieved:</p>
+      <ol id="suggestions-list">
+        <li>Time_Based_Access: Adopt time-based access control for additional security.</li>
+        <li>Security_Groups: Review and optimize security group settings for improved isolation.</li>
+        <li>Access_Revocation: Improve processes for quick and effective access revocation.</li>
+        <li>Cross_Region_Access: Control and monitor cross-region access to resources.</li>
+        <li>Cloud_Native_Directory_Services: Adopt cloud-native directory services for better identity management.</li>
+        <li>Segmentation_of_Duties: Ensure proper segmentation of duties to prevent conflicts of interest.</li>
+        <li>Instance_Metadata_Service_Access: Restrict access to instance metadata service for enhanced security.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>&copy; 2024 Security App</p>
+  </div>
+
+  <!-- JavaScript for rendering policies -->
+  <script>
+    const policies = {
+      'User_Identity_Management': true,
+      'Security_Policies': true,
+      'Privileged_Access_Management': true,
+      'User_Session_Management': true,
+      'Time_Based_Access': false,
+      'User_Behavior_Analytics': true,
+      'Network_Security_Controls': true,
+      'Access_Control_Lists': true,
+      'Encryption_Policies': true,
+      'Logging_and_Monitoring': true,
+      'Security_Groups': false,
+      'Identity_Federation': true,
+      'Least_Privilege_Principle': true,
+      'Access_Control_Propagation': true,
+      'API_Access_Control': true,
+      'Cloud_Workload_Identity': true,
+      'Audit_Trails': true,
+      'Access_Revocation': false,
+      'Cross_Region_Access': false,
+      'DLP_Policies': true,
+      'Multi_Tenancy_Security': true,
+      'Cloud_Orchestration_Layer_Security': true,
+      'Token_based_Access_Control': true,
+      'Granular_Access_Control': true,
+      'Cloud_Native_Directory_Services': false,
+      'Access_to_Logs_and_Monitoring_Tools': true,
+      'Custom_Access_Control_Policies': true,
+      'Zero_Trust_Architecture': true,
+      'VPC_Controls': true,
+      'Segmentation_of_Duties': false,
+      'Instance_Metadata_Service_Access': false,
+      'Shared_Responsibility_Model': true,
+      'Cloud_Storage_Access_Policies': true,
+      'API_Gateway_Security': true,
+      'Dynamic_Access_Management': true,
+      'Account_Lockout_Policies': true,
+      'Access_to_Sensitive_Compute_Resources': true,
+      'Penetration_Testing_and_Vulnerability_Assessments': true
+    };
+
+    const policyList = document.getElementById('policy-list');
+
+    function renderPolicies() {
+      policyList.innerHTML = '';
+      Object.entries(policies).forEach(([policy, isEnabled]) => {
+        const policyItem = document.createElement('div');
+        policyItem.className = 'policy-item';
+
+        policyItem.innerHTML = `
+          <span>${policy.replace(/_/g, ' ')}</span>
+          <div>
+            <button class="btn btn-sm btn-${isEnabled ? 'success' : 'outline-secondary'} enable-btn" ${isEnabled ? 'disabled' : ''}>
+              Enable
+            </button>
+            <button class="btn btn-sm btn-${!isEnabled ? 'danger' : 'outline-secondary'} disable-btn" ${!isEnabled ? 'disabled' : ''}>
+              Disable
+            </button>
+          </div>
+        `;
+
+        const enableButton = policyItem.querySelector('.enable-btn');
+        const disableButton = policyItem.querySelector('.disable-btn');
+
+        enableButton.addEventListener('click', () => {
+          policies[policy] = true;
+          renderPolicies();
+        });
+
+        disableButton.addEventListener('click', () => {
+          policies[policy] = false;
+          renderPolicies();
+        });
+
+        policyList.appendChild(policyItem);
+      });
+    }
+
+    function calculateScore() {
+      const totalPolicies = Object.keys(policies).length;
+      const enabledPolicies = Object.values(policies).filter(v => v).length;
+      return (enabledPolicies / totalPolicies) * 5;
+    }
+
+    document.getElementById('get-score-btn').addEventListener('click', () => {
+      const score = calculateScore();
+      const scoreDisplay = document.getElementById('security-score-display');
+      scoreDisplay.textContent = `Your cloud access security score is ${score.toFixed(1)} out of 5.0`;
+
+      // Change text color based on score
+      if (score <= 2) {
+        scoreDisplay.style.color = 'red';
+      } else if (score === 3) {
+        scoreDisplay.style.color = 'yellow';
+      } else {
+        scoreDisplay.style.color = 'green';
+      }
+    });
+
+    // Initial render
+    renderPolicies();
+  </script>
 </body>
 
 </html>
