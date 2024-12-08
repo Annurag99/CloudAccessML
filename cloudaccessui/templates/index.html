@@ -1,12 +1,381 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask App</title>
-</head>
-<body>
-    <h1>Welcome to the Flask App</h1>
-    <p>This is a simple Flask app deployed on AWS Elastic Beanstalk.</p>
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+{% block cta %}
+<div class="container hero">
+        <div class="row">
+            <div class="col-6 offset-xl-0">
+                <h1>Indulge in Timeless Beauty</h1>
+                <p> At our Salon, immerse yourself in an opulent experience where luxury treatments intertwine seamlessly with bespoke,
+                    personalized care.</p>
+                    <a href="{% url 'appointment' %}" 
+                      class="btn btn-light btn-lg active" type="button">Book an appointment</a>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock cta %}
+
+{% block content %}
+
+<section id="services">
+  <div class="bg-dark text-center py-5 mb-4">
+      <div class="container">
+        <h1 class="fw-light text-white">Services</h1>
+        <p class="fw-light text-white">At the heart of our salon lies a commitment to delivering compassionate and expert beauty care to our cherished
+        community. With you as our focal point, we pledge to envelop you in a nurturing environment where every service is
+        meticulously tailored to your unique needs and desires. Allow us to become your trusted beauty partner, guiding you on a
+        journey of self-care and empowerment.</p>
+      </div>
+    </div>
+  <div class="container">
+    <div class="row">
+
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-0 shadow">
+          <img src="../static/img/IrishBridalMakeup.webp"  class="card-img-top" alt="...">
+          <div class="card-body text-center">
+            <h5 class="card-title mb-0">Specialized Services</h5>
+            <div class="card-text text-black-50">Your special occasions made relaxing.
+              Bridal, Prom, Parties packages
+              Beauty consultations and personalized recommendations</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-0 shadow">
+          <img src="../static/img/facialService.webp" class="card-img-top" alt="...">
+          <div class="card-body text-center">
+            <h5 class="card-title mb-0">Dermatology</h5>
+            <div class="card-text text-black-50">Your skin care made easy.
+              Facials
+              Skin treatments (e.g., exfoliation, masks, peels)
+              Waxing (e.g., eyebrows, lip, legs, bikini)
+              Eyebrow shaping/threading
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-0 shadow">
+          <img src="{% static 'img/service3.jpg' %}" class="card-img-top" alt="...">
+          <div class="card-body text-center">
+            <h5 class="card-title mb-0">Spa Services</h5>
+            <div class="card-text text-black-50">
+            Massages (e.g., Swedish, deep tissue, hot stone)
+            Body treatments (e.g., scrubs, wraps)
+            Aromatherapy
+            Relaxation techniques (e.g., meditation, aromatherapy)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-0 shadow">
+          <img src="../static/img/haircut.jpeg" class="card-img-top" alt="...">
+          <div class="card-body text-center">
+            <h5 class="card-title mb-0">Haircuts</h5>
+            <div class="card-text text-black-50">
+              Hair Styling & Coloring: Expert styling for your perfect look.
+              Hair Treatments: Revitalize hair with conditioning and keratin treatments.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.row -->
+  
+  </div>
+</section>
+
+
+<section class="container py-5" style="margin-block:200px;" id="team">
+  <div class="row text-center ">
+    <div class="col-lg-8 mx-auto">
+      <h1 class="display-4">Exquisite Beauty Artisans</h1>
+      <p class="lead">Entrust yourself to the skilled hands of our seasoned beauty artisans, renowned for their
+        expertise in delivering
+        tailored care and indulgent pampering, using only the finest quality products to enhance your natural beauty.
+      </p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row text-center">
+
+      <!-- Team item -->
+      <div class="col-xl-3 col-sm-6 mb-5">
+        <div class="bg-white rounded shadow-sm py-5 px-4"><img src="../static/img/teamNail.webp" alt=""
+            class=" mh-100 rounded-circle mb-3 img-thumbnail shadow-sm">
+          <h5 class="mb-0">Nail Artist Jasmine</h5>
+          <span class="small text-uppercase text-muted">
+            Expert in: Nail art/design</span>
+        </div>
+      </div><!-- End -->
+
+      <!-- Team item -->
+      <div class="col-xl-3 col-sm-6 mb-5">
+        <div class="bg-white rounded shadow-sm py-5 px-4"><img src="../static/img/teamHair.png" alt=""
+            class=" mh-100 rounded-circle mb-3 img-thumbnail shadow-sm">
+          <h5 class="mb-0">Hair Stylist Andrew</h5>
+          <span class="small text-uppercase text-muted">
+            Expert in: Hair styling</span>
+        </div>
+      </div><!-- End -->
+
+      <!-- Team item -->
+      <div class="col-xl-3 col-sm-6 mb-5">
+        <div class="bg-white rounded shadow-sm py-5 px-4"><img src="../static/img/teamFacial.jpg" alt=""
+            class=" mh-100 rounded-circle mb-3 img-thumbnail shadow-sm">
+          <h5 class="mb-0">Esthetician Noah</h5>
+          <span class="small text-uppercase text-muted">Expert in:
+            Facials, 
+            Skin treatments, 
+            Waxing and
+            Eyebrow threading</span>
+        </div>
+      </div><!-- End -->
+
+      <!-- Team item -->
+      <div class="col-xl-3 col-sm-6 mb-5">
+        <div class="bg-white rounded shadow-sm py-5 px-4"><img src="../static/img/teamSpa.webp" alt=""
+            class=" mh-100img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+          <h5 class="mb-0">Spa Therapist Isabella</h5>
+          <span class="small text-uppercase text-muted">Expert in:
+            Massages
+            Body treatments
+            Aromatherapy and
+            Relaxation techniques</span>
+        </div>
+      </div><!-- End -->
+    </div>
+  </div>
+</section>
+
+<section class="text-center conatiner" style="margin-block:200px;" id="reviews">
+    <h2>Delighted Clients</h2>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      <style>
+        .carousel-inner>.item>img,
+        .carousel-inner>.item>a>img {
+          width: 70%;
+          margin: auto;
+        }
+      </style>
+      <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#myCarousel" data-slide-to="1"></li>
+          <li data-target="#myCarousel" data-slide-to="2"></li>
+          <li data-target="#myCarousel" data-slide-to="3"></li>
+        </ol>
+      
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+      
+          <div class="item active">
+            <img src="../static/img/review1.jpg" alt="Chania" width="500" height="500">
+            <div class="carousel-caption">
+              <h3>Mrs Mira Khan</h3>
+              <p>The salon's personalized bridal makeup service was absolutely exceptional. They listened to my vision and transformed it
+              into a stunning, radiant look for my special day. I couldn't be happier with the professionalism and attention to detail
+              from the talented team.</p>
+            </div>
+          </div>
+      
+          <div class="item">
+            <img src="../static/img/review2.jpg" alt="Chania" width="500" height="500">
+            <div class="carousel-caption">
+              <h3>Dr. Emily Bennett</h3>
+              <p>The salon provided exceptional service for myself and my friends. Our haircuts were stylish, nails flawless, and party
+              touch-ups perfect. The staff's professionalism and attention to detail made our experience unforgettable. We left
+              feeling confident and ready to shine. Thank you!</p>
+            </div>
+          </div>
+      
+          <div class="item">
+            <img src="../static/img/review3.jpg" alt="Flower" width="500" height="500">
+            <div class="carousel-caption">
+              <h3>Mr Sophia Miller</h3>
+              <p>The salon made us bridesmaids feel like the ultimate glam squad! Our haircuts were on point, nails flawless, and
+              touch-ups for the wedding were spot-on. We were ready to slay! Thanks to the salon team for making us feel like bridal
+              beauties!</p>
+            </div>
+          </div>
+      
+          <div class="item">
+            <img src="../static/img/review4.jpg" alt="Flower" width="500" height="500">
+            <div class="carousel-caption">
+              <h3>Mr Nathan Johnson</h3>
+              <p>We are deeply honored to accept this prestigious hair and beauty award on behalf of our incredible salon team. This recognition
+              is a testament to the dedication, talent, and passion that each and every member of our team brings to their craft every
+              single day. From hairstyling to beauty treatments, we strive to create transformative experiences for our clients,
+              helping them feel confident, beautiful, and empowered. This award is not just a symbol of our achievements, but also a
+              reflection of the trust and loyalty of our amazing clients who inspire us to be the best version of ourselves.</p>
+            </div>
+          </div>
+      
+        </div>
+      
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+      </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-body-tertiary text-center" style="background-color: rgba(0, 0, 0, 0.05);">
+  <!-- Grid container -->
+  <div class="container pt-4">
+    <!-- Section: Social media -->
+    <section>
+      <div class="row">
+        <div class="col-sm-7 text-left p-0">
+          <!-- Facebook -->
+          <a data-mdb-ripple-init class="btn btn-outline btn-floating m-1" href="https://www.facebook.com/" target=”_blank”
+            role="button"><i class="fab fa-facebook-f"></i></a>
+          
+          <!-- Twitter -->
+          <a data-mdb-ripple-init class="btn btn-outline btn-floating m-1" href="https://twitter.com/?lang=en" target=”_blank”
+            role="button"><i class="fab fa-twitter"></i></a>
+          
+          <!-- Google -->
+          <a data-mdb-ripple-init class="btn btn-outline btn-floating m-1" href="https://mail.google.com/" target=”_blank”
+            role="button"><i class="fab fa-google"></i></a>
+          
+          <!-- Instagram -->
+          <a data-mdb-ripple-init class="btn btn-outline btn-floating m-1" href="https://www.instagram.com/" target=”_blank”
+            role="button"><i class="fab fa-instagram"></i></a>
+          
+          <!-- Linkedin -->
+          <a data-mdb-ripple-init class="btn btn-outline btn-floating m-1" href="https://www.linkedin.com/in/annurag09/"
+            target=”_blank” role="button"><i class="fab fa-linkedin-in"></i></a>
+          
+          <!-- Github -->
+          <a data-mdb-ripple-init class="btn btn-outline btn-floating m-1" href="https://github.com/Annurag99" target=”_blank”
+            role="button"><i class="fab fa-github"></i></a>
+        </div>
+        <div class="col-sm-5 text-right">
+                <form action="">
+                  <!--Grid row-->
+                  <div class="d-flex justify-content-center">
+                    <!--Grid column-->
+                    <div class="col-auto">
+                      <p class="pt-2">
+                        <strong>Sign up for our newsletter</strong>
+                      </p>
+                    </div>
+                    <!--Grid column-->
+                
+                    <!--Grid column-->
+                    <div class="col-md-5 col-12">
+                      <!-- Email input -->
+                      <div data-mdb-input-init class="form-outline mb-4">
+                        <input type="email" id="form5Example24" class="form-control" placeholder="Email address" />
+                      </div>
+                    </div>
+                    <!--Grid column-->
+                
+                    <!--Grid column-->
+                    <div class="col-auto">
+                      <!-- Submit button -->
+                      <button data-mdb-ripple-init type="submit" class="btn btn-dark" id="subscribe">
+                        Subscribe
+                      </button>
+                    </div>
+                    <!--Grid column-->
+                  </div>
+                  <!--Grid row-->
+                </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div>
+        <div class="row">
+          <div class="col-sm-6 text-left">
+            <div class="contact-detail-box">
+              <i class="far fa-envelope text-dark fa-3x"></i>
+              <h4>Contact Us</h4>
+              <abbr title="Phone">Mobile:</abbr> (+353) 087 603 2994<br>
+              Email: <a href="mailto:x23180013@student.ncirl.ie" class="text-muted">salonconnect@yahoo.com</a>
+            </div>
+          </div>
+        
+          <div class="col-sm-6 text-right">
+            <div class="contact-detail-box">
+              <i class="fa fa-map-marker fa-3x text-dark"></i>
+              <h4>Our Location</h4>
+        
+              <address>
+                25 Wicklow St, <br>
+                Dublin 2, D02 PY82 <br>
+              </address>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-8 p-2">
+            <div class="contact-map">
+              <iframe
+                src="https://www.google.com/maps/embed/v1/place?q=Dublin+Beauty+Lounge&amp;key=AIzaSyBSFRN6WWGYwmFi498qXXsD2UwkbmD74v4"
+                frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                style="width: 100%; height: 360px;"></iframe>
+            </div>
+          </div><!-- end col -->
+    
+          <!-- Contact form -->
+          <div class="col-sm-4">
+            <form role="form" name="ajax-form" id="ajax-form" method="post" class="form-main" action="{% url 'home' %}">
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="name2" style="float: left;">Name</label>
+                <input class="form-control" id="name2" name="name" type="text" placeholder="Please enter your name">
+                <div class="error" id="err-name" style="display: none;">Please enter name</div>
+              </div> <!-- /Form-name -->
+    
+              <div class="form-group">
+                <label for="email2" style="float: left;">Email</label>
+                <input class="form-control" id="email2" name="email" type="text" placeholder="Please enter your email">
+                <div class="error" id="err-emailvld" style="display: none;">E-mail is not a valid format</div>
+              </div> <!-- /Form-email -->
+    
+              <div class="form-group">
+                <label for="message2" style="float: left;">Message</label>
+                <textarea class="form-control" id="message2" name="message" rows="5"
+                  placeholder="message">Please enter message or feedback</textarea>
+    
+                <div class="error" id="err-message" style="display: none;">Please enter message or feedback</div>
+              </div> <!-- /col -->
+    
+              <div class="row" style="float: right;margin-right: 1px;">
+                <button type="submit" class="btn btn-dark" id="send">Send</button>
+              </div> <!-- /col -->
+          </div> <!-- /row -->
+          </form> <!-- /form -->
+        </div> 
+      </div> <!-- end row -->
+      </div>
+    </section>
+  </div>
+  <!-- Copyright -->
+  <div class="text-center p-3 mt-4" style="background-color: rgba(0, 0, 0, 0.05);">
+    © 2024 Copyright:
+    <a class="text-reset fw-bold" href="https://github.com/Annurag99/Salon-Connect">Salon Connect</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
+{% endblock content %}
