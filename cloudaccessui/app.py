@@ -20,12 +20,12 @@ def predict():
     try:
         # Parse input JSON for features
         data = request.get_json()
-        features = np.array(data['features']).reshape(1, -1)
+        print(data)
+
 
         # Make a prediction
-        prediction = model.predict(features).tolist()
-        probability = model.predict_proba(features).tolist()
-
+        prediction = model.predict(data)
+        probability = model.predict_proba(data)
         # Return prediction and probability
         return jsonify({
             'prediction': prediction,
