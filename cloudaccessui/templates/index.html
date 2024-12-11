@@ -52,6 +52,10 @@
       max-height: 200px;
       overflow-y: auto;
     }
+    
+    #suggestions-list{
+      display: none; /* Initially hidden */
+    }
 
     .navbar-dark .navbar-nav .nav-link {
       color: white;
@@ -218,7 +222,7 @@
       return (enabledPolicies / totalPolicies) * 5;
     }
 
-    document.getElementById('get-score-btn').addEventListener('click', () => {
+    document.getElementById('get-score-btn').addEventListener('click', async () => {
       const score = calculateScore();
       const scoreDisplay = document.getElementById('security-score-display');
       scoreDisplay.textContent = `Your cloud access security score is ${score.toFixed(1)} out of 5.0`;
@@ -231,8 +235,35 @@
       } else {
         scoreDisplay.style.color = 'green';
       }
+      // Show the Suggestions Display Box after 2 seconds
+    setTimeout(() => {
+      const suggestionsBox = document.getElementById('suggestions-list');
+      suggestionsBox.style.display = 'block'; // Make the box visible
+    }, 2000); 
+      try {
+      // Prepare the data to send to the API
+      const requestData = {
+        policies: policies, // Send the policies object
+      };
+    
+      // Make the API call
+      const response = await fetch('/predict', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestData),
+      });
+      if (!response.ok) {
+        throw new Error(`API Error: ${response.statusText}`);
+      }
+      const responseData = await response.json();
+      // Extract prediction and probability from response
+      const { prediction, probability } = responseData;
+      } catch (error) {
+        console.error('Error:', error);
+      }
     });
-
     // Initial render
     renderPolicies();
   </script>
