@@ -1,9 +1,9 @@
 branch-defaults:
   default:
-    environment: accesscloudsecurity-env
+    environment: cloudaccess-env
     group_suffix: null
 global:
-  application_name: accesscontrolsecurity
+  application_name: app
   branch: main
   default_ec2_keyname: null
   default_platform: Python 3.12 running on 64bit Amazon Linux 2023
