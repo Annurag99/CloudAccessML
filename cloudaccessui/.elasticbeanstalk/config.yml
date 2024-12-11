@@ -1,0 +1,18 @@
+branch-defaults:
+  default:
+    environment: accesscloudsecurity-env
+    group_suffix: null
+global:
+  application_name: accesscontrolsecurity
+  branch: main
+  default_ec2_keyname: null
+  default_platform: Python 3.12 running on 64bit Amazon Linux 2023
+  default_region: eu-west-2
+  include_git_submodules: true
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: null
+  repository: git@github.com:Annurag99/CloudAccessML.git
+  sc: null
+  workspace_type: Application
